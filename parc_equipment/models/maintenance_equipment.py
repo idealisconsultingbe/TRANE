@@ -24,8 +24,8 @@ class ParcEquipment(models.Model):
             'view_id': self.env.ref('documents.document_view_kanban').id,
             'target': 'current',
             'context': {
-                "search_default_partner_id": self.partner_id.id,
-                "default_partner_id": self.partner_id.id,
+                "search_default_partner_id": self.client_id.id,
+                "default_partner_id": self.client_id.id,
                 "searchpanel_default_folder_id": False
             },
         }
