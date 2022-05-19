@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="trane_view_picking_form_view" model="ir.ui.view">
+        <field name="name">trane.view.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_button_box']" position="inside">
+                <button name="action_open_view_equipment" class="oe_stat_button" icon="fa-cubes" type="object">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">
+                                Equipments
+                            </span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
