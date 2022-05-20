@@ -9,7 +9,7 @@ class TraneStockPicking(models.Model):
         res = super(TraneStockPicking, self).button_validate()
         if self.picking_type_id.code == "incoming":
             for move in self.move_ids_without_package:
-                equipment = self.env["maintenance.equipment"].search([('product_id', '=', move.product_id.id), ('origin_picking_ids', 'in', self.id)])
+                equipment = self.env["maintenance.equipment"].search([('product_id', '=', move.product_id.id)])
                 if not equipment:
                     self.env["maintenance.equipment"].create(
                         {
@@ -30,6 +30,7 @@ class TraneStockPicking(models.Model):
                             'client_id': self.partner_id,
                             'commission_date': self.scheduled_date,
                             'origin_picking_ids': [(4, self.id)],
+                            'serial_no': len(move.lot_ids) > 0 and move.lot_ids[:1].name,
                         }
                     )
         return res
