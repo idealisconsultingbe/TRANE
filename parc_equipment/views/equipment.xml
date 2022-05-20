@@ -30,6 +30,7 @@
             </div>
 
             <xpath expr="//field[@name='category_id']" position='after'>
+                <field name="commission_date" />
                 <field name="client_id" />
                 <field name="account_analystic_id" />
             </xpath>
