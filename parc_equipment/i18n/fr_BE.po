@@ -90,7 +90,7 @@ msgstr "Équipements"
 #. module: parc_equipment
 #: model:ir.model.fields,field_description:parc_equipment.field_maintenance_equipment__product_id
 msgid "Product"
-msgstr ""
+msgstr "Produit"
 
 #. module: parc_equipment
 #: code:addons/parc_equipment/models/maintenance_equipment.py:0
