@@ -5,6 +5,7 @@ class ParcEquipment(models.Model):
     _inherit = "maintenance.equipment"
     _description = "Trane Parc Maintenance Equipment"
     
+    commission_date = fields.Date(string="Date of commissioning")
     origin_picking_ids = fields.Many2many("stock.picking", string="origin picking")
     client_id = fields.Many2one("res.partner", string="Client & Address")
     account_analystic_id = fields.Many2one("account.analytic.account", string="Analytic Account")

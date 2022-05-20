@@ -28,7 +28,7 @@ class TraneStockPicking(models.Model):
                     equipment_id.write(
                         {
                             'client_id': self.partner_id,
-                            'assign_date': self.scheduled_date,
+                            'commission_date': self.scheduled_date,
                             'origin_picking_ids': [(4, self.id)],
                         }
                     )
