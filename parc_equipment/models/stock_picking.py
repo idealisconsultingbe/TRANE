@@ -20,22 +20,17 @@ class TraneStockPicking(models.Model):
                 )
         elif self.picking_type_id.code == "outgoing":
             for move in self.move_ids_without_package:
-                equipment_id = self.env["maintenance.equipment"].search([('product_id', '=', move.product_id.id)], limit=1)
-                equipment_serial = self.env["maintenance.equipment"].search([('product_id', '=', move.product_id.id), ('serial_no', '=', move.lot_ids[:1].name )], limit=1)
-                if equipment_id:
+                equipment_id = self.env["maintenance.equipment"].search([('product_id', '=', move.product_id.id), ('serial_no','=', move.lot_ids[:1].name) ], limit=1)
+                if equipment_id and not equipment_serial:
                     equipment_id.write(
                         {
                             'client_id': self.partner_id,
                             'commission_date': self.scheduled_date,
                             'origin_picking_ids': [(4, self.id)],
-                        }
-                    )
-                if equipment_id and not equipment_serial:
-                     equipment_id.write(
-                        {
                             'serial_no': len(move.lot_ids) > 0 and move.lot_ids[:1].name,
                         }
                     )
+                    
         return res
 
     def action_open_view_equipment(self):
