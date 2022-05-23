@@ -22,7 +22,7 @@ class TraneStockPicking(models.Model):
             for move in self.move_ids_without_package:
                 equipment_id = self.env["maintenance.equipment"].search([('product_id', '=', move.product_id.id)], limit=1)
                 equipment_serial = self.env["maintenance.equipment"].search([('product_id', '=', move.product_id.id), ('serial_no', '=', move.lot_ids[:1].name )], limit=1)
-                if equipment_id and not equipment_serial:
+                if equipment_id:
                     equipment_id.write(
                         {
                             'client_id': self.partner_id,
