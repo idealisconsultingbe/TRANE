@@ -9,18 +9,16 @@ class TraneStockPicking(models.Model):
         res = super(TraneStockPicking, self).button_validate()
         if self.picking_type_id.code == "incoming":
             for move in self.move_ids_without_package:
-                equipment = self.env["maintenance.equipment"].search([('product_id', '=', move.product_id.id)])
-                if not equipment:
-                    self.env["maintenance.equipment"].create(
-                        {
-                            'product_id': move.product_id.id,
-                            'name': move.product_id.name,
-                            'effective_date': move.date,
-                            'origin_picking_ids': [(4, self.id)],
-                            'account_analystic_id': move.analytic_account_line_id.id,
-                            'serial_no': len(move.lot_ids) > 0 and move.lot_ids[:1].name,
-                        }
-                    )
+                self.env["maintenance.equipment"].create(
+                    {
+                        'product_id': move.product_id.id,
+                        'name': move.product_id.name,
+                        'effective_date': move.date,
+                        'origin_picking_ids': [(4, self.id)],
+                        'account_analystic_id': move.analytic_account_line_id.id,
+                        'serial_no': len(move.lot_ids) > 0 and move.lot_ids[:1].name,
+                    }
+                )
         elif self.picking_type_id.code == "outgoing":
             for move in self.move_ids_without_package:
                 equipment_id = self.env["maintenance.equipment"].search([('product_id', '=', move.product_id.id)], limit=1)
