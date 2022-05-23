@@ -27,7 +27,6 @@ class TraneStockPicking(models.Model):
                             'client_id': self.partner_id,
                             'commission_date': self.scheduled_date,
                             'origin_picking_ids': [(4, self.id)],
-                            'serial_no': len(move.lot_ids) > 0 and move.lot_ids[:1].name,
                         }
                     )
                     
