@@ -5,7 +5,6 @@ class TraneStockPicking(models.Model):
     _inherit = "stock.picking"
     
     def button_validate(self):
-        self.ensure_one()
         res = super(TraneStockPicking, self).button_validate()
         if self.picking_type_id.code == "incoming":
             for move in self.move_ids_without_package:
